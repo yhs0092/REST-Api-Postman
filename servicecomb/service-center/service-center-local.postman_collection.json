@@ -1,0 +1,101 @@
+{
+	"info": {
+		"name": "service-center-local",
+		"_postman_id": "aa98e3fa-f438-9aaf-a573-d7031c9eae6e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get services",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-domain-name",
+						"value": "default"
+					}
+				],
+				"body": {},
+				"url": "127.0.0.1:30100/registry/v3/microservices",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get instance by serviceId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6320fe30-f60e-467c-824d-d46dc723976f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "89bc3748-47b2-4717-8a1d-ff3e9c563940",
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"ms_id\", \"a4e6314dfd0a11e792f2286ed488d105\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-domain-name",
+						"value": "default"
+					},
+					{
+						"key": "x-ConsumerId",
+						"value": "{{ms_id}}"
+					}
+				],
+				"body": {},
+				"url": "127.0.0.1:30100/registry/v3/microservices/{{ms_id}}/instances",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete instance by id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3631d16c-3004-4381-956b-0bc35a5d18ce",
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"ms_id\", \"fee1b640fd0911e792f2286ed488d105\");",
+							"pm.globals.set(\"inst_id\", \"ff087015fd0911e792f2286ed488d105\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-domain-name",
+						"value": "default"
+					},
+					{
+						"key": "x-ConsumerId",
+						"value": "{{ms_id}}"
+					}
+				],
+				"body": {},
+				"url": "127.0.0.1:30100/registry/v3/microservices/{{ms_id}}/instances/{{inst_id}}",
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
